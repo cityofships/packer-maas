@@ -34,12 +34,13 @@ source "qemu" "rocky9" {
   boot_command     = ["<up><tab> ", "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/rocky.ks ", "console=ttyS0 inst.cmdline", "<enter>"]
   boot_wait        = "3s"
   communicator     = "none"
+  cpus             = 4
   disk_size        = "4G"
   headless         = var.headless
   http_directory   = "http"
   iso_checksum     = "file:${var.rocky_sha256sum_url}"
   iso_url          = "${var.rocky_iso_url}"
-  memory           = 2048
+  memory           = 8192
   qemuargs         = [["-serial", "stdio"], ["-cpu", "host"]]
   shutdown_timeout = "1h"
 }
